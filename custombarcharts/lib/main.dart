@@ -1,6 +1,7 @@
 
 import 'dart:math';
 
+import 'package:custombarcharts/chart_painter.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -120,72 +121,6 @@ class CustomBarChart extends StatelessWidget {
 
 }
 
-class BarChartPainter extends CustomPainter {
-  final List<double> data;
-  final int labelInterval; // Controls how often X-axis labels are drawn
-
-  BarChartPainter(this.data, {this.labelInterval = 1});
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.blue
-      ..style = PaintingStyle.fill;
-    final barSpacing = 10.0;
-    final numBars = data.length;
-    final minimumBarWidth = 50.0; // Minimum width for each bar
-    final barWidth = max(minimumBarWidth, (size.width - barSpacing * (numBars + 1)) / numBars); // Adjusted bar width
-    final maxData = data.reduce((value, element) => value > element ? value : element);
-
-    final double xAxisPadding = 20;
-    final double yAxisPadding = 20;
-
-    // Draw X and Y axes
-    final xAxisStart = Offset(0, size.height);
-    final xAxisEnd = Offset(size.width, size.height);
-    final yAxisStart = Offset(0, 0);
-    final yAxisEnd = Offset(0, size.height);
-
-    canvas.drawLine(xAxisStart, xAxisEnd, paint);
-    canvas.drawLine(yAxisStart, yAxisEnd, paint);
-
-    // Add labels to the X and Y axes
-    final yLabelStyle = TextStyle(color: Colors.black, fontSize: 14);
-    final xLabelStyle = TextStyle(color: Colors.black, fontSize: 14);
-
-    for (int i = 0; i < data.length; i++) {
-      final barHeight = (data[i] / maxData) * (size.height - xAxisPadding);
-      var left = i * (barWidth + barSpacing);
-
-      // Draw X-axis labels only for the subset defined by labelInterval
-      if (i % labelInterval == 0) {
-        final top = size.height - barHeight;
-        final rect = Rect.fromPoints(
-          Offset(left, top),
-          Offset(left + barWidth, size.height),
-        );
-
-        canvas.drawRect(rect, paint);
-
-        // Calculate X-coordinate for label positioning in the center
-        final xLabel = i.toString();
-        final xLabelPainter = TextPainter(
-          text: TextSpan(text: xLabel, style: xLabelStyle),
-          textDirection: TextDirection.ltr,
-        );
-        xLabelPainter.layout();
-        final labelX = left + (barWidth - xLabelPainter.width) / 2;
-        xLabelPainter.paint(canvas, Offset(labelX, size.height));
-      }
-    }
-    
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
-  }
-
 
 // class BarChartPainter extends CustomPainter {
 //   final List<double> data;
@@ -257,4 +192,4 @@ class BarChartPainter extends CustomPainter {
 //   bool shouldRepaint(CustomPainter oldDelegate) {
 //     return false;
 //   }
-}
+
