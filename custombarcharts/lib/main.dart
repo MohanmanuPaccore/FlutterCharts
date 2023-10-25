@@ -120,8 +120,8 @@ class CustomBarChart extends StatelessWidget {
 
 List<String> labels=['Group A', 'Group B', 'Group C',
                
-               'Group C','Group C','Group C',
-               'Group C','Group C'
+               'Group D','Group E','Group F',
+               'Group G','Group H'
                
                
                ];
