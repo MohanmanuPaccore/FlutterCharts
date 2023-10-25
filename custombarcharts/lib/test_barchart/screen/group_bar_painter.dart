@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
 
 class GroupedBarChartPainter extends CustomPainter {
   List<List<double>>? groupData;
@@ -33,10 +32,11 @@ class GroupedBarChartPainter extends CustomPainter {
     final maxBarsInGroup =
         groupData?.map((group) => group.length).reduce((a, b) => a > b ? a : b);
 
-    final totalBarSpacing = groupSpacing * (numGroups! - 1);
+    final totalBarSpacing = groupSpacing * (numGroups! - 2);
     final totalBarWidth =
         size.width - leftPadding - rightPadding - totalBarSpacing;
-
+    final barWidth = (totalBarWidth / (numGroups * maxBarsInGroup!))
+        .clamp(minimumBarWidth!, double.infinity);
     final maxData =
         groupData?.expand((group) => group).reduce((a, b) => a > b ? a : b);
 
@@ -44,8 +44,7 @@ class GroupedBarChartPainter extends CustomPainter {
     final xAxisStart = Offset(leftPadding, size.height - bottomMargin);
     final xAxisEnd =
         Offset(size.width - rightPadding, size.height - bottomMargin);
-    final barWidth = (totalBarWidth / (numGroups * maxBarsInGroup!))
-        .clamp(minimumBarWidth!, double.infinity);
+
     final xLinePaint = Paint()
       ..color = Colors.black
       ..style = PaintingStyle.fill;
@@ -70,6 +69,7 @@ class GroupedBarChartPainter extends CustomPainter {
 
       // Calculate the X-coordinate for the group label
       final groupLabel = groupLabels![groupIndex];
+
       final xLabelPainter = TextPainter(
         text: TextSpan(text: groupLabel, style: xLabelStyle),
         textDirection: TextDirection.ltr,
@@ -108,9 +108,12 @@ class GroupedBarChartPainter extends CustomPainter {
         currentX += barWidth;
         canvas.drawRect(rect, paint);
       }
-      currentX += groupSpacing + (barWidth * getBarListLength - barWidth);
+
+      currentX += groupSpacing + (barWidth * numGroups * 0.2 - barWidth);
     }
   }
+
+
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {

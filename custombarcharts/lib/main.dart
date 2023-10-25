@@ -109,13 +109,13 @@ class _CustomBarChartState extends State<CustomBarChart> {
   double barwidth = 100;
 
   //Group of bars
-  List<List<double>> groupData = [
+  List<List<double>> groupData1 = [
     [20.0, 30.0, 40.0, 50.0, 50.0, 70.0],
     [10.0, 25.0, 35.0, 50, 70],
     [15.0, 35.0, 45.0, 10],
     [15.0, 35.0, 45.0, 20],
     [15.0, 35.0, 45.0],
-    [15.0, 35.0, 45.0],
+    [15.0, 35.0, 45.0,20.0, 30.0, 40.0, 50.0, 50.0, 70.0,20.0, 30.0, 40.0, 50.0, 50.0, 70.0],
     [15.0, 35.0, 45.0],
     [15.0, 35.0, 45.0],
     [15.0, 35.0],
@@ -126,7 +126,7 @@ class _CustomBarChartState extends State<CustomBarChart> {
     [15.0, 35.0, 45.0],
     [10.0, 25.0, 35.0, 50, 70],
   ];
-  List<List<double>> groupData1 = List.generate(1000, (index) {
+  List<List<double>> groupData = List.generate(1000, (index) {
     List<double> innerList = List.generate(10, (innerIndex) {
       return (index * 10 + innerIndex).toDouble();
     });
@@ -135,7 +135,7 @@ class _CustomBarChartState extends State<CustomBarChart> {
   var barsLength = 0;
 
   // Category B
-  List<String> labels = [
+  List<String> labels1 = [
     'Group A',
     'Group B',
     'Group C',
@@ -152,7 +152,7 @@ class _CustomBarChartState extends State<CustomBarChart> {
     'Group N',
     'Group O',
   ];
-  List<String> labels1 = List.generate(1000, (index) {
+  List<String> labels = List.generate(1000, (index) {
     return 'Name $index'; // Generate names with an index, e.g., "Name 0", "Name 1", ...
   });
 
