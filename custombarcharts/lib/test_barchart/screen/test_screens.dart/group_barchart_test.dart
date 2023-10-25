@@ -13,7 +13,7 @@ class GroupBarChartTest extends StatefulWidget {
 class _GroupBarChartTestState extends State<GroupBarChartTest> {
     final List<double> data = List.generate(50, (index) => Random().nextDouble() * 1000);
             
-            double barwidth=100;
+            double barwidth=300;
             //Group of bars
               List<List<double>> groupData = [
    
@@ -25,6 +25,14 @@ class _GroupBarChartTestState extends State<GroupBarChartTest> {
                 [15.0,],
                 [15.0, 35.0, 45.0],
                 [15.0, 35.0, 45.0],
+                [15.0, 35.0, 45.0],
+                [15.0, 35.0, 45.0],
+                [15.0, 35.0, 45.0],
+                [15.0, 35.0, 45.0],
+                [15.0, 35.0, 45.0],
+                [15.0, 35.0, 45.0],
+                [15.0, 35.0, 45.0],
+                [15.0, 35.0, 45.0],
 
               ]; // Category B
 
@@ -32,11 +40,21 @@ class _GroupBarChartTestState extends State<GroupBarChartTest> {
 List<String> labels=['Group A', 'Group B', 'Group C',
                
                'Group D','Group E','Group F',
-               'Group G','Group H'
+               'Group G','Group H','Group i','Group j','Group k','Group l','Group m','Group n','Group o','Group p'
                
                
                ];
 
+var barsLength = 0;
+
+@override
+void initState() {
+  // TODO: implement initState
+  for (int i = 0; i < groupData.length; i++) {
+    barsLength += groupData[i].length;
+  }
+  super.initState();
+}
 
   @override
   Widget build(BuildContext context) {
@@ -58,19 +76,21 @@ List<String> labels=['Group A', 'Group B', 'Group C',
     //     groupLabels: labels,
     //   ),
     // ),
-    SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: SizedBox(
-        width: barwidth * 10 + groupData.length * 100, // Adjust the width as needed
-        child: CustomPaint(
-          size: Size(barwidth * 10 + groupData.length * 100, chartHeight),
-          painter: GroupedBarChartPainter(
-            groupData: groupData,
-            groupLabels: labels,
-            isYAxisScrollable: false, // Disable Y-axis scrolling
+       SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          //Single bar Items
+          // child: CustomPaint(
+          //   size: Size(chartWidth, chartHeight),
+          //   painter: BarChartPainter(data),
+          // ),
+          child: CustomPaint(
+            size: Size(barwidth * 20 + barsLength * 20, chartHeight),
+            painter: GroupedBarChartPainter(
+                groupData: groupData,
+                groupLabels: labels,
+                minimumBarWidth: barwidth / 4),
           ),
-        ),
-      ),
+        
     ),
   ],
 );

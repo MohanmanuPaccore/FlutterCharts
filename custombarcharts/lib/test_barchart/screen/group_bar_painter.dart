@@ -26,12 +26,13 @@ class GroupedBarChartPainter extends CustomPainter {
    double? leftLinePadding ;
    bool? isYAxisScrollable; // Separate left line padding
 
-  GroupedBarChartPainter({required this.groupData,required this.groupLabels,this.minimumBarWidth=20,this.groupSpacing=10,
+  GroupedBarChartPainter({required this.groupData,required this.groupLabels,this.minimumBarWidth=20,this.groupSpacing=20,
   this.bottomMargin=30,this.xAxisPadding=0,
   this.yAxisPadding=20,this.leftPadding=15,
   this.rightPadding=5,this.topPadding=10,
-  this.bottomPadding=3,this.xLineStrokeWidth=2.0,
+  this.bottomPadding=2,this.xLineStrokeWidth=2.0,
   this.leftLinePadding=70.0,this.yAxisLabelPadding=5,
+  
   this.yLineStrokeWidth=2.0,this.isYAxisScrollable=true
   
   
@@ -114,7 +115,7 @@ for (int groupIndex = 0; groupIndex <= maxBarsInGroup; groupIndex++) {
     xLabelPainter.layout();
     final labelX =
         currentX + (barWidth * getBarListLength - xLabelPainter.width) / 2;
-    xLabelPainter.paint(canvas, Offset(labelX, xLabelY - 30));
+    xLabelPainter.paint(canvas, Offset(labelX, xLabelY - 40));
     double maxBarHeight = 0;
     for (int barIndex = 0;
         barIndex < groupData![groupIndex].length;
@@ -138,8 +139,7 @@ for (int groupIndex = 0; groupIndex <= maxBarsInGroup; groupIndex++) {
       currentX += barWidth;
       canvas.drawRect(rect, paint);
     }
-    currentX += groupSpacing! + (barWidth * numGroups * 0.2 - barWidth);
-  }
+currentX += groupSpacing! + (barWidth * getBarListLength - barWidth);  }
 }  @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     return false;
