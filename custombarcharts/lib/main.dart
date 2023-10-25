@@ -1,4 +1,3 @@
-
 import 'dart:math';
 
 import 'package:custombarcharts/chart_painter.dart';
@@ -32,7 +31,7 @@ void main() {
 //           onPressed: () {
 //             showModalBottomSheet(
 //               constraints: BoxConstraints(minHeight: 300,maxHeight: MediaQuery.of(context).size.height),
-              
+
 //               context: context,
 //               isScrollControlled: true,
 
@@ -80,7 +79,6 @@ void main() {
 //   ));
 // }
 
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -100,37 +98,40 @@ class MyApp extends StatelessWidget {
 
 class CustomBarChart extends StatelessWidget {
   //final List<double> data = [100.0, 150.0, 200.0, 50.0, 220.0, 320.0, 500.0, 1000.0, 100, 500, 200, 300, 400, 700, 600];
-  final List<double> data = List.generate(50, (index) => Random().nextDouble() * 1000);
-            
-            double barwidth=100;
-            //Group of bars
-              List<List<double>> groupData = [
-   
-                [20.0, 30.0, 40.0,50.0,50.0,70.0],
-                [10.0, 25.0, 35.0,50,70],
-                [15.0, 35.0, 45.0,10],
-                                [15.0, 35.0, 45.0,20],
-                [15.0, 35.0, ],
-                [15.0,],
-                [15.0, 35.0, 45.0],
-                [15.0, 35.0, 45.0],
+  final List<double> data =
+      List.generate(50, (index) => Random().nextDouble() * 1000);
 
-              ]; // Category B
+  double barwidth = 100;
 
+  //Group of bars
+  List<List<double>> groupData = [
+    [20.0, 30.0, 40.0, 50.0, 50.0, 70.0],
+    [10.0, 25.0, 35.0, 50, 70],
+    [15.0, 35.0, 45.0, 10],
+    [15.0, 35.0, 45.0, 20],
+    [15.0, 35.0],
+    [15.0],
+    [15.0, 35.0, 45.0],
+    [15.0, 35.0, 45.0],
+  ]; // Category B
 
-List<String> labels=['Group A', 'Group B', 'Group C',
-               
-               'Group C','Group C','Group C',
-               'Group C','Group C'
-               
-               
-               ];
+  List<String> labels = [
+    'Group A',
+    'Group B',
+    'Group C',
+    'Group D',
+    'Group E',
+    'Group F',
+    'Group G',
+    'Group H'
+  ];
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final chartWidth = max(60.0 * data.length, constraints.maxWidth); // Ensure a minimum bar width of 50
+        final chartWidth = max(60.0 * data.length,
+            constraints.maxWidth); // Ensure a minimum bar width of 50
         final chartHeight = constraints.maxHeight;
 
         return SingleChildScrollView(
@@ -140,24 +141,15 @@ List<String> labels=['Group A', 'Group B', 'Group C',
           //   size: Size(chartWidth, chartHeight),
           //   painter: BarChartPainter(data),
           // ),
-child:            CustomPaint(
-            size: Size(barwidth*10+ groupData.length*100, chartHeight),
-            painter: GroupedBarChartPainter(
-              
-              groupData ,
-              labels
-
-
-            ),
+          child: CustomPaint(
+            size: Size(barwidth * 10 + groupData.length * 100, chartHeight),
+            painter: GroupedBarChartPainter(groupData, labels),
           ),
-
         );
       },
     );
   }
-
 }
-
 
 // class BarChartPainter extends CustomPainter {
 //   final List<double> data;
@@ -197,7 +189,6 @@ child:            CustomPaint(
 //       // if(i==data.length-1){
 //       //                  left = i * (barWidth + barSpacing) ;
 
-
 //       // }else{
 //       //  left = i * (barWidth + barSpacing) + barSpacing;
 
@@ -221,7 +212,6 @@ child:            CustomPaint(
 //       xLabelPainter.layout();
 //       xLabelPainter.paint(canvas, Offset(left + (barWidth - xLabelPainter.width) / 2, size.height));
 
-
 //   }
 //   }
 
@@ -229,4 +219,3 @@ child:            CustomPaint(
 //   bool shouldRepaint(CustomPainter oldDelegate) {
 //     return false;
 //   }
-
