@@ -6,6 +6,8 @@ import 'package:custombarcharts/chart_painter.dart';
 import 'package:custombarcharts/test_barchart/screen/group_bar_painter.dart';
 import 'package:flutter/material.dart';
 
+import 'test_barchart/screen/bar_chart_test_api.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -92,7 +94,9 @@ class MyApp extends StatelessWidget {
         ),
         body: Container(
           margin: EdgeInsets.symmetric(horizontal: 17, vertical: 17),
-          child: CustomBarChart(),
+          child: BarchartTestApi()
+          
+          // CustomBarChart(),
         ),
       ),
     );
@@ -134,45 +138,73 @@ List<String> labels=['Group A', 'Group B', 'Group C',
         final chartWidth = max(60.0 * data.length, constraints.maxWidth); // Ensure a minimum bar width of 50
         final chartHeight = constraints.maxHeight;
 
-        return Center(
-          child: BarChart(
-            bars: [
-              Bar(label: 'A', value: 100),
-              Bar(label: 'B', value: 75),
-              Bar(label: 'C', value: 150),
-              Bar(label: 'D', value: 200),
-              Bar(label: 'E', value: 50),
-              Bar(label: 'F', value: 175),
-              Bar(label: 'G', value: 175),
-              Bar(label: 'H', value: 175),
-              Bar(label: 'I', value: 175),
-              Bar(label: 'J', value: 175),
-              Bar(label: 'K', value: 175),
-              Bar(label: 'L', value: 175),
-              Bar(label: 'M', value: 175),
-            ],
+       // return 
+        // Center(
+        //   child: 
+        //   BarChart(
+        //     bars: [
+        //       Bar(label: 'A', value: 100),
+        //       Bar(label: 'B', value: 75),
+        //       Bar(label: 'C', value: 150),
+        //       Bar(label: 'D', value: 200),
+        //       Bar(label: 'E', value: 50),
+        //       Bar(label: 'F', value: 175),
+        //       Bar(label: 'G', value: 175),
+        //       Bar(label: 'H', value: 175),
+        //       Bar(label: 'I', value: 175),
+        //       Bar(label: 'J', value: 175),
+        //       Bar(label: 'K', value: 175),
+        //       Bar(label: 'L', value: 175),
+        //       Bar(label: 'M', value: 175),
+        //     ],
+        //   ),
+        // );
+        return Stack(
+  children: <Widget>[
+    // CustomPaint(
+    //   size: Size(barwidth * 10 + groupData.length * 100, chartHeight),
+    //   painter: GroupedBarChartPainter(
+    //     groupData: groupData,
+    //     groupLabels: labels,
+    //   ),
+    // ),
+    SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: SizedBox(
+        width: barwidth * 10 + groupData.length * 100, // Adjust the width as needed
+        child: CustomPaint(
+          size: Size(barwidth * 10 + groupData.length * 100, chartHeight),
+          painter: GroupedBarChartPainter(
+            groupData: groupData,
+            groupLabels: labels,
+            isYAxisScrollable: false, // Disable Y-axis scrolling
           ),
-        );
-
-        return SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          //Single bar Items
-          // child: CustomPaint(
-          //   size: Size(chartWidth, chartHeight),
-          //   painter: BarChartPainter(data),
-          // ),
-child:            CustomPaint(
-            size: Size(barwidth*10+ groupData.length*100, chartHeight),
-            painter: GroupedBarChartPainter(
-              
-              groupData ,
-              labels
+        ),
+      ),
+    ),
+  ],
+);
 
 
-            ),
-          ),
+//         return SingleChildScrollView(
+//           scrollDirection: Axis.horizontal,
+//           //Single bar Items
+//           // child: CustomPaint(
+//           //   size: Size(chartWidth, chartHeight),
+//           //   painter: BarChartPainter(data),
+//           // ),
+// child:            CustomPaint(
+//             size: Size(barwidth*10+ groupData.length*100, chartHeight),
+//             painter: GroupedBarChartPainter(
+//               groupData: groupData,
+//               groupLabels: labels
+               
 
-        );
+
+//             ),
+//           ),
+
+//         );
       },
     );
   }
