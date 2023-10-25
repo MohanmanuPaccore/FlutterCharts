@@ -96,7 +96,12 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class CustomBarChart extends StatelessWidget {
+class CustomBarChart extends StatefulWidget {
+  @override
+  State<CustomBarChart> createState() => _CustomBarChartState();
+}
+
+class _CustomBarChartState extends State<CustomBarChart> {
   //final List<double> data = [100.0, 150.0, 200.0, 50.0, 220.0, 320.0, 500.0, 1000.0, 100, 500, 200, 300, 400, 700, 600];
   final List<double> data =
       List.generate(50, (index) => Random().nextDouble() * 1000);
@@ -109,12 +114,27 @@ class CustomBarChart extends StatelessWidget {
     [10.0, 25.0, 35.0, 50, 70],
     [15.0, 35.0, 45.0, 10],
     [15.0, 35.0, 45.0, 20],
+    [15.0, 35.0, 45.0],
+    [15.0, 35.0, 45.0],
+    [15.0, 35.0, 45.0],
+    [15.0, 35.0, 45.0],
     [15.0, 35.0],
     [15.0],
     [15.0, 35.0, 45.0],
     [15.0, 35.0, 45.0],
-  ]; // Category B
+    [15.0, 35.0, 45.0],
+    [15.0, 35.0, 45.0],
+    [10.0, 25.0, 35.0, 50, 70],
+  ];
+  List<List<double>> groupData1 = List.generate(1000, (index) {
+    List<double> innerList = List.generate(10, (innerIndex) {
+      return (index * 10 + innerIndex).toDouble();
+    });
+    return innerList;
+  });
+  var barsLength = 0;
 
+  // Category B
   List<String> labels = [
     'Group A',
     'Group B',
@@ -123,8 +143,28 @@ class CustomBarChart extends StatelessWidget {
     'Group E',
     'Group F',
     'Group G',
-    'Group H'
+    'Group H',
+    'Group I',
+    'Group J',
+    'Group K',
+    'Group L',
+    'Group M',
+    'Group N',
+    'Group O',
   ];
+  List<String> labels1 = List.generate(1000, (index) {
+    return 'Name $index'; // Generate names with an index, e.g., "Name 0", "Name 1", ...
+  });
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    for (int i = 0; i < groupData.length; i++) {
+      barsLength += groupData[i].length;
+      debugPrint('barsLength -------------------------- : $barsLength');
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -142,8 +182,11 @@ class CustomBarChart extends StatelessWidget {
           //   painter: BarChartPainter(data),
           // ),
           child: CustomPaint(
-            size: Size(barwidth * 10 + groupData.length * 100, chartHeight),
-            painter: GroupedBarChartPainter(groupData, labels),
+            size: Size(barwidth * 20 + barsLength * 20, chartHeight),
+            painter: GroupedBarChartPainter(
+                groupData: groupData,
+                groupLabels: labels,
+                minimumBarWidth: barwidth / 4),
           ),
         );
       },
