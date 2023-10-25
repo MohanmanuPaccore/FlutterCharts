@@ -13,12 +13,14 @@ class BarChartPainter extends CustomPainter {
    double minimumBarWidth=50;
    double barSpacing=10;
    double bottomMargin=30;
-  final double xAxisPadding = 0;
-  final double yAxisPadding = 20;
-  final double leftPadding = 5.0;
-  final double rightPadding = 5.0;
-  final double topPadding = 10.0;
-  final double bottomPadding = 5.0;
+   double xAxisPadding = 0;
+   double yAxisPadding = 20;
+   double leftPadding = 5.0;
+   double rightPadding = 5.0;
+   double topPadding = 10.0;
+   double bottomPadding = 3.0;
+double xLineStorkeWidth=2.0;
+double yLineStorkeWidth=2.0;
 
     // Controls how often X-axis labels are drawn
 
@@ -48,13 +50,14 @@ void paint(Canvas canvas, Size size) {
 
   // Adjust the X-axis line
   final xAxisStart = Offset(0, size.height - bottomMargin); // Position the X-axis line 50 pixels above the bottom
-  final xAxisEnd = Offset(size.width, size.height - bottomMargin); // Position the X-axis line 50 pixels above the bottom
+  final xAxisEnd = Offset(size.width, size.height - bottomMargin);
+   // Position the X-axis line 50 pixels above the bottom
 
-  xLinepaint.strokeWidth = 2.0; // Set the desired width (e.g., 4.0)
-  yLinePaint.strokeWidth = 4.0;
+  xLinepaint.strokeWidth = xLineStorkeWidth; // Set the desired width (e.g., 4.0)
+  yLinePaint.strokeWidth = xLineStorkeWidth;
 
   canvas.drawLine(xAxisStart, xAxisEnd, xLinepaint);
-  
+
 
   for (int i = 0; i < data.length; i++) {
     final barHeight = (data[i] / maxData) * (size.height - xAxisPadding - bottomMargin); // Adjust for the 50 pixels above the bottom

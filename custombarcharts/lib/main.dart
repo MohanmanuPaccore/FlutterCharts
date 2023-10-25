@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:custombarcharts/bar_chart.dart';
 import 'package:custombarcharts/chart_painter.dart';
+import 'package:custombarcharts/test_barchart/screen/group_bar_painter.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -101,6 +102,30 @@ class MyApp extends StatelessWidget {
 class CustomBarChart extends StatelessWidget {
   //final List<double> data = [100.0, 150.0, 200.0, 50.0, 220.0, 320.0, 500.0, 1000.0, 100, 500, 200, 300, 400, 700, 600];
   final List<double> data = List.generate(50, (index) => Random().nextDouble() * 1000);
+            
+            double barwidth=100;
+            //Group of bars
+              List<List<double>> groupData = [
+   
+                [20.0, 30.0, 40.0,50.0,50.0,70.0],
+                [10.0, 25.0, 35.0,50,70],
+                [15.0, 35.0, 45.0,10],
+                                [15.0, 35.0, 45.0,20],
+                [15.0, 35.0, ],
+                [15.0,],
+                [15.0, 35.0, 45.0],
+                [15.0, 35.0, 45.0],
+
+              ]; // Category B
+
+
+List<String> labels=['Group A', 'Group B', 'Group C',
+               
+               'Group D','Group E','Group F',
+               'Group G','Group H'
+               
+               
+               ];
 
   @override
   Widget build(BuildContext context) {
@@ -131,10 +156,22 @@ class CustomBarChart extends StatelessWidget {
 
         return SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: CustomPaint(
-            size: Size(chartWidth, chartHeight),
-            painter: BarChartPainter(data),
+          //Single bar Items
+          // child: CustomPaint(
+          //   size: Size(chartWidth, chartHeight),
+          //   painter: BarChartPainter(data),
+          // ),
+child:            CustomPaint(
+            size: Size(barwidth*10+ groupData.length*100, chartHeight),
+            painter: GroupedBarChartPainter(
+              
+              groupData ,
+              labels
+
+
+            ),
           ),
+
         );
       },
     );
