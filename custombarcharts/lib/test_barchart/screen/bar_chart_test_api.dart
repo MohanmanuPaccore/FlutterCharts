@@ -14,60 +14,47 @@ class _BarchartTestApiState extends State<BarchartTestApi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-      
-       SafeArea(child:
-        Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            
-            children: [
-        
-          button('Bar Chart 1',
-          (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> BarChartTest1()));
-          }
-          
-          ),
-        
-        
-          SizedBox(height: 30,),
-               button('Group Bar Chart',
-          (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> GroupBarChart()));
-          }
-          
-          ),
-        
-                  SizedBox(height: 30,),
-               button('Bar Chart 2',
-          (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> BarChartTest2()));
-          }
-          
-          ),
-        
-
-          
-          ],),
-        )),
+      body: SafeArea(
+          child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            button('Bar Chart 1', () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => BarChartTest1()));
+            }),
+            SizedBox(
+              height: 30,
+            ),
+            button('Group Bar Chart', () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => GroupBarChart()));
+            }),
+            SizedBox(
+              height: 30,
+            ),
+            button('Bar Chart 2', () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => BarChartTest2()));
+            }),
+          ],
+        ),
+      )),
     );
   }
 
-  Widget button(String buttonText ,VoidCallback onTap){
-
+  Widget button(String buttonText, VoidCallback onTap) {
     return InkWell(
       onTap: onTap,
-child: Container(
-  color: Colors.blue,
-  padding: EdgeInsets.all(12),
-child: Text(buttonText,
-style: TextStyle(color: Colors.white,
-fontWeight: FontWeight.w500
-),
-),
-),
+      child: Container(
+        color: Colors.blue,
+        padding: EdgeInsets.all(12),
+        child: Text(
+          buttonText,
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+        ),
+      ),
     );
   }
 }
