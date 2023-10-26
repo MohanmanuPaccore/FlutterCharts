@@ -136,10 +136,14 @@ for (int groupIndex = 0; groupIndex <= maxBarsInGroup; groupIndex++) {
         Offset(rightWithPadding, bottomWithPadding),
       );
       final paint = Paint()..color = Colors.blue;
-      currentX += barWidth;
+      currentX += barWidth-1;
       canvas.drawRect(rect, paint);
     }
-currentX += groupSpacing! + (barWidth * getBarListLength - barWidth);  }
+// currentX += groupSpacing! + (barWidth * groupData!.length*0.15 - barWidth*4);
+    currentX += groupSpacing!;
+
+    // debugPrint('currentX: ----------------------------------------------:$currentX');
+  }
 }  @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     return false;
