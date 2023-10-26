@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:custombarcharts/bar_chart.dart';
 import 'package:custombarcharts/chart_painter.dart';
-import 'package:custombarcharts/test_barchart/screen/group_bar_painter.dart';
+import 'package:custombarcharts/grouped_barchart/group_bar_painter.dart';
 import 'package:flutter/material.dart';
 
 import 'test_barchart/screen/bar_chart_test_api.dart';
