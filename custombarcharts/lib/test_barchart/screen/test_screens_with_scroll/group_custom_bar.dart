@@ -1,7 +1,8 @@
 import 'dart:math';
 
-import 'package:custombarcharts/test_barchart/screen/group_bar_painter.dart';
 import 'package:flutter/material.dart';
+
+import '../../../grouped_barchart/group_bar_painter.dart';
 
 class GroupCustomBarCharts extends StatefulWidget {
   const GroupCustomBarCharts({super.key});
@@ -64,13 +65,13 @@ class _GroupCustomBarChartsTestState extends State<GroupCustomBarCharts> {
     [15.0, 35.0, 45.0],
   ]; // Category B
 
-  List<List<double>> groupData = List.generate(100, (index) {
+  List<List<double>> groupData = List.generate(40, (index) {
     List<double> innerList = List.generate(10, (innerIndex) {
       return (index * 10 + innerIndex).toDouble();
     });
     return innerList;
   });
-  List<String> labels = List.generate(100, (index) {
+  List<String> labels = List.generate(40, (index) {
     return 'Name ${index+1}'; // Generate names with an index, e.g., "Name 0", "Name 1", ...
   });
   List<String> labels1 = [

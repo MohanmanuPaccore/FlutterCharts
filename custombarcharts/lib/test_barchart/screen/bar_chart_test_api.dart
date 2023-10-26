@@ -1,7 +1,10 @@
 import 'package:custombarcharts/test_barchart/screen/test_screens.dart/bar_chart_test1.dart';
 import 'package:custombarcharts/test_barchart/screen/test_screens.dart/bar_chart_test2.dart';
-import 'package:custombarcharts/test_barchart/screen/test_screens.dart/group_barchart_test.dart';
+
 import 'package:custombarcharts/test_barchart/screen/test_screens_with_scroll/group_custom_bar.dart';
+
+import 'package:custombarcharts/grouped_barchart/group_barchart.dart';
+
 import 'package:flutter/material.dart';
 
 class BarchartTestApi extends StatefulWidget {
@@ -36,7 +39,9 @@ class _BarchartTestApiState extends State<BarchartTestApi> {
           SizedBox(height: 30,),
                button('Group Bar Chart',
           (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> GroupCustomBarCharts()));
+
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> GroupBarChart()));
+
           }
           
           ),
